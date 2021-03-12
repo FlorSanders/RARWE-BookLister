@@ -1,0 +1,15 @@
+{{page-title "Books"}}
+
+<ul>
+    {{#each
+    (array
+    (hash title="The age of surveillance capitalism" author="Shoshana Zuboff" rating=5)
+    (hash title="Everything is fucked" author="Mark Manson" rating=3)
+    (hash title="Deep Work" author="Cal Newport" rating=4)
+    ) as |book|
+    }}
+    <li class="leading-loose">
+        {{book.title}} by {{book.author}} <span class="float-right">{{book.rating}}</span>
+    </li>
+    {{/each}}
+</ul>
