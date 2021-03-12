@@ -63,7 +63,6 @@ export default class AuthorsRoute extends Route {
       name: 'Mark Manson',
       books: [book4, book5],
     });
-    console.log(author3)
     return [author1, author2, author3];
   }
 }
