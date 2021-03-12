@@ -1,8 +1,8 @@
-{{page-title "Books | B00kL1st3r" replace=true}}
+{{page-title @model.name "'s books | B00kL1st3r" replace=true}}
 
-{{#if @model.length}}
+{{#if @model.books.length}}
 <ul>
-    {{#each @model as |book|}}
+    {{#each @model.books as |book|}}
     <li class="mb-2">
         {{book.title}}
         <span class="float-right">
@@ -15,4 +15,29 @@
 <p class="text-center">
     No books by this author are available.
 </p>
+{{/if}}
+{{!-- BEWARE: The controller defining the context behind this is a singleton, which is not page specific! --}}
+{{#if this.showAddBook}}
+<div class="flex justify-center mt-5">
+    <button type="button"
+        class="px-4 py-2 rounded bg-purple-200 shadow-md hover:shadow-lg hover:text-white hover:bg-purple-800 focus:outline-none"
+        {{on "click" (set this "showAddBook" false)}}>
+        Add book
+    </button>
+</div>
+{{else}}
+<div class="mt-6 flex">
+    <input type="text" class="text-gray-800 bg-white rounded-md py-2 px-4" placeholder="Title" value={{this.title}}
+        {{on "input" this.updateTitle}} />
+    <button type="button"
+        class="ml-4 px-4 py-2 rounded bg-green-200 shadow-md hover:shadow-lg hover:text-white hover:bg-green-800"
+        {{on "click" this.saveBook}}>
+        Save
+    </button>
+    <button type="button"
+        class="ml-4 px-4 py-2 rounded bg-red-200 shadow-md hover:shadow-lg hover:text-white hover:bg-red-800"
+        {{on "click" this.cancel}}>
+        Cancel
+    </button>
+</div>
 {{/if}}

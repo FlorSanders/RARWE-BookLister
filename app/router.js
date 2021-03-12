@@ -11,5 +11,8 @@ Router.map(function () {
     this.route('author', {path: ':id'}, function() {
       this.route('books');
     });
+    this.route('new');
   });
+
+  this.route('bands', function() {});
 });
