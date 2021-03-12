@@ -1,0 +1,18 @@
+{{page-title "Books | B00kL1st3r" replace=true}}
+
+{{#if @model.length}}
+<ul>
+    {{#each @model as |book|}}
+    <li class="mb-2">
+        {{book.title}}
+        <span class="float-right">
+            {{book.rating}}
+        </span>
+    </li>
+    {{/each}}
+</ul>
+{{else}}
+<p class="text-center">
+    No books by this author are available.
+</p>
+{{/if}}
