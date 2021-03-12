@@ -1,5 +1,18 @@
-{{page-title "Rarwe"}}
+{{page-title "B00kL1st3r"}}
 
-<h2 id="title">Welcome to Ember</h2>
-
-{{outlet}}
+<div class="bg-gray-050 text-gray-600 p-8 h-screen">
+    <div class="mx-auto mb-4">
+        <div class="h-12 flex items-center mb-4 border-b-2">
+            <a href="#">
+                <h1 class="font-bold text-2x1">
+                    B00k <span class="font-normal">L1st3r</span>
+                </h1>
+            </a>
+        </div>
+        <nav class="h-8 flex items-center mb-8" role="navigation">
+            <LinkTo class="hover:text-gray-800" @route="authors">Authors</LinkTo>
+            <LinkTo class="hover:text-gray-800 ml-4" @route="books">Books</LinkTo>
+        </nav>
+        {{outlet}}
+    </div>
+</div>
