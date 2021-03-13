@@ -1,15 +1,7 @@
 {{page-title "Authors"}}
 
 <div class="w-1/3 px-2">
-    <ul class="p1-2 pr-8">
-        {{#each @model as |author|}}
-        <li class="mb-2">
-            <LinkTo @route="authors.author.books" @model={{author.id}}>
-                {{author.name}}
-            </LinkTo>
-        </li>
-        {{/each}}
-    </ul>
+    <AuthorList @authors={{@model}} />
     <LinkTo @route="authors.new"
         class="inline-block ml-2 mt-2 p-2 rounded bg-purple-200 shadow-md hover:shadow-lf hover:text-white hover:bg-purple-800 focus:outline-none">
         Add author

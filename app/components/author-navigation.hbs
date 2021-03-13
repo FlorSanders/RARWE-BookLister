@@ -1,0 +1,12 @@
+<nav class="flex mb-8 text-lg" role="navigation">
+    <div class="pb-1 {{if this.isActive.details " border-b-4 border-purple-200 hover:border-purple-800"}}">
+        <LinkTo @route="authors.author.details">
+            Details
+        </LinkTo>
+    </div>
+    <div class="pb-1 ml-4 {{if this.isActive.books " border-b-4 border-purple-200 hover:border-purple-800"}}">
+        <LinkTo @route="authors.author.books">
+            Books
+        </LinkTo>
+    </div>
+</nav>

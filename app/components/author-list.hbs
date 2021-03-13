@@ -1,0 +1,10 @@
+<ul class="pl-2 pr-8">
+    {{#each this.authors as |item|}}
+    <li class="mb-2">
+        <LinkTo @route="authors.author" @model={{item.author.id}} class={{if
+            item.isActive "border-l-4 pl-2 border-purple-200 hover:border-purple-800" }}>
+            {{item.author.name}}
+        </LinkTo>
+    </li>
+    {{/each}}
+</ul>
