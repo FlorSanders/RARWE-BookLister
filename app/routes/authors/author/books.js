@@ -7,7 +7,7 @@ export default class AuthorsAuthorBooksRoute extends Route {
         controller.title = '';
         controller.showAddBook = true;
     }
-    
+
     // model() {
     //     let author = this.modelFor('authors.author');
     //     return author.books;
