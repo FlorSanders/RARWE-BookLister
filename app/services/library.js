@@ -128,7 +128,7 @@ export default class LibraryService extends Service {
     add(type, record) {
         let collection = type === 'author' ? this.storage.authors : this.storage.books;
         // We want the elements in our collections to be unique, not checking this explicitly results in duplicates being loaded into memory
-        // Result is a so-called identity map --> More efficient implementation is possible by using actual maps
+        // Result is a so-called identity map --> More efficient implementation is possible by using actual maps or POJOs (plain old javascript object)
         let recordIds = collection.map((record) => record.id);
         if (!recordIds.includes(record.id)) {
             collection.push(record);
