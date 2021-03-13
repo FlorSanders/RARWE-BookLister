@@ -6,9 +6,10 @@ export default class Author {
     @tracked name;
     @tracked books;
 
-    constructor({ id, name, books }) {
+    constructor({ id, name, books }, relationships = {}) {
         this.id = id;
         this.name = name;
         this.books = books ?? []; // Alternative would be to use books || [], which would replace any value that could be interpreted as false.
+        this.relationships = relationships;
     }
 }

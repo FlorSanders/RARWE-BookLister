@@ -6,7 +6,7 @@
     <li class="mb-2">
         {{book.title}}
         <span class="float-right">
-            <StarRating @rating={{book.rating}} @onUpdate={{set book "rating" }} />
+            <StarRating @rating={{book.rating}} @onUpdate={{fn this.updateRating book}} />
         </span>
     </li>
     {{/each}}
