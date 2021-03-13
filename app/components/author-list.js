@@ -6,7 +6,8 @@ export default class AuthorListComponent extends Component {
 
     get authors() {
         console.log(this.args.authors)
-        return this.args.authors.map((author) => ({
+        let authors = this.args.authors.filter((item) => !!item.id) // YAY I broke the API, now I have to filter out on id-less authors
+        return authors.map((author) => ({
             author,
             isActive: this.router.isActive('authors.author', author),
         }));

@@ -13,6 +13,33 @@ export default class AuthorsNewController extends Controller {
     // Tracked variables serve as a sensitivity list for rerenders of our application
     @tracked name;
 
+    constructor() {
+        super(...arguments);
+        //If the user leaves the page while entering a new author, a warning should be given
+        this.router.on('routeWillChange', (transition) => {
+            if (transition.from.name === 'authors.new') {
+                // If we already confirmed, don't make the box reappear
+                if (this.confirmedLeave) {
+                    return;
+                }
+                // Only abort once, then return... otherwise the cancel button causes an infinite loop
+                if (transition.isAborted) {
+                    return;
+                }
+                // Only if some text is entered into the field
+                if (!!this.name) {
+                    let leave = window.confirm("You have unsaved changes. Are you sure?");
+                    console.log(leave);
+                    if (leave) {
+                        this.confirmedLeave = true;
+                    } else {
+                        transition.abort();
+                    }
+                }
+            }
+        })
+    }
+
     @action
     updateName(e) {
         this.name = e.target.value;
@@ -21,6 +48,7 @@ export default class AuthorsNewController extends Controller {
     @action
     async saveAuthor() {
         let newAuthor = await this.library.create('author', { name: this.name });
+        this.confirmedLeave = true;
         this.router.transitionTo('authors.author.books', newAuthor.id);
     }
 }
