@@ -6,7 +6,7 @@ import { tracked } from 'tracked-built-ins';
 import { isArray } from '@ember/array';
 
 function extractRelationships(object) {
-    let relationships = {};
+    if(!object) return; // Using the Object.keys() function only works if the argument passed is not undefined
     Object.keys(object).forEach((name) => {
         if (name === 'songs') {
             relationships['books'] = object[name].links.related;
@@ -114,7 +114,6 @@ export default class LibraryService extends Service {
 
     async fetchRelated(record, relationship) {
         let url = record.relationships[relationship];
-        console.log(url)
         let response = await fetch(url);
         let json = await response.json();
         if (isArray(json.data)) {

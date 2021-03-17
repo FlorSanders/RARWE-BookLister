@@ -29,7 +29,6 @@ export default class AuthorsNewController extends Controller {
                 // Only if some text is entered into the field
                 if (!!this.name) {
                     let leave = window.confirm("You have unsaved changes. Are you sure?");
-                    console.log(leave);
                     if (leave) {
                         this.confirmedLeave = true;
                     } else {
