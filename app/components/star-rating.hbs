@@ -1,7 +1,8 @@
 {{#each this.stars as |star|}}
-<button type="button" {{on "click" (fn @onUpdate star.rating)}}>
+<button type="button" {{on "click" (fn @onUpdate star.rating)}} data-test-rr="star-rating-button">
     {{!-- This inline if works equivalently to the ternary operator in JavaScript --}}
-    <FaIcon @icon='star' @prefix={{if star.full 'fas' 'far' }} />
+    <FaIcon @icon='star' @prefix={{if star.full 'fas' 'far' }} data-test-rr={{if star.full "full-star" "empty-star"
+        }} />
 </button>
 
 {{/each}}

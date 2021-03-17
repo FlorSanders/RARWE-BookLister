@@ -8,13 +8,13 @@
         <label for="name" class="block text-sm font-medium leading-5">Name</label>
         <div class="mt-1 relative rounded-md shadow-sm">
             <input id="name" class="w-full text-gray-800 bg-white border rounded-md py-2 px-4" value={{this.name}}
-                {{on "input" this.updateName}} />
+                {{on "input" this.updateName}} data-test-rr="new-author-name" />
         </div>
     </div>
     <div class="sm:col-span-4 mt-2">
         <button type="button"
             class="px-4 py-2 rounded bg-green-200 shadow-md hover:shadow-lg hover:text-white hover:bg-green-800"
-            {{on "click" this.saveAuthor}}>
+            {{on "click" this.saveAuthor}} data-test-rr="save-author-button">
             Save
         </button>
     </div>

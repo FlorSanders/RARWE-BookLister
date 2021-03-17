@@ -16,7 +16,7 @@ export default class AuthorsAuthorBooksController extends Controller {
     @action
     async updateRating(book, rating) {
         book.rating = rating;
-        this.library.update('book', book, { rating });
+        this.library.update('books', book, { rating });
     }
 
     @action

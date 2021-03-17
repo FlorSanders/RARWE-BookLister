@@ -7,6 +7,7 @@ import { isArray } from '@ember/array';
 
 function extractRelationships(object) {
     if(!object) return; // Using the Object.keys() function only works if the argument passed is not undefined
+    let relationships = {};
     Object.keys(object).forEach((name) => {
         if (name === 'songs') {
             relationships['books'] = object[name].links.related;

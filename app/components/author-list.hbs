@@ -1,8 +1,9 @@
 <ul class="pl-2 pr-8">
     {{#each this.authors as |item|}}
-    <li class="mb-2">
+    <li class="mb-2" data-test-rr="author-list-item">
         <LinkTo @route="authors.author" @model={{item.author.id}} class={{if
-            item.isActive "border-l-4 pl-2 border-purple-200 hover:border-purple-800" }}>
+            item.isActive "border-l-4 pl-2 border-purple-200 hover:border-purple-800" }}
+            data-test-rr="author-list-link">
             {{item.author.name}}
         </LinkTo>
     </li>

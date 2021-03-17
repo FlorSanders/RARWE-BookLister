@@ -1,10 +1,12 @@
 <nav class="flex mb-8 text-lg" role="navigation">
-    <div class="pb-1 {{if this.isActive.details " border-b-4 border-purple-200 hover:border-purple-800"}}">
+    <div class="pb-1 {{if this.isActive.details " border-b-4 border-purple-200 hover:border-purple-800"}}"
+        data-test-rr="details-nav-item">
         <LinkTo @route="authors.author.details">
             Details
         </LinkTo>
     </div>
-    <div class="pb-1 ml-4 {{if this.isActive.books " border-b-4 border-purple-200 hover:border-purple-800"}}">
+    <div class="pb-1 ml-4 {{if this.isActive.books " border-b-4 border-purple-200 hover:border-purple-800"}}"
+        data-test-rr="books-nav-item">
         <LinkTo @route="authors.author.books">
             Books
         </LinkTo>
