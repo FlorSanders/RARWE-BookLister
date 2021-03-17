@@ -34,7 +34,7 @@ module('Unit | Service | library', function(hooks) {
     // Test libary loading functionality
     library.load({
       data: {
-        type: 'band',
+        type: 'bands',
         id: 1,
         attributes: {
           name: 'TOOL',
@@ -48,8 +48,8 @@ module('Unit | Service | library', function(hooks) {
         },
       },
     });
-    let author = catalog.authors[0];
+    let author = library.authors[0];
     assert.equal(author.name, 'TOOL');
-    assert.equal(author.relationships.songs, '/bands/1/songs');
+    assert.equal(author.relationships.books, '/bands/1/songs');
   });
 });
