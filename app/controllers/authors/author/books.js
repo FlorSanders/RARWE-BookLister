@@ -7,10 +7,33 @@ export default class AuthorsAuthorBooksController extends Controller {
     @service library;
     @tracked showAddBook = true;
     @tracked title = '';
+    @tracked sortBy = 'title';
+    @tracked searchTerm = '';
+
+    get matchingBooks() {
+        let searchTerm = this.searchTerm.toLowerCase();
+        let filteredBooks = this.model.books.filter((book) => (book.title.toLowerCase().includes(searchTerm)));
+        return filteredBooks;
+    }
+
+    get sortedBooks() {
+        let sortBy = this.sortBy;
+        let isDescendingSort = sortBy[0] === '-';
+        sortBy = isDescendingSort ? sortBy.slice(1) : sortBy;
+
+        // The [...array] makes a copy of the array to make sure it isn't mutated 
+        let sortedBooks = this.matchingBooks.sort((a,b) => (isDescendingSort ? (b[sortBy] > a[sortBy] ? 1 : -1) : (a[sortBy] > b[sortBy] ? 1 : -1)));
+        return sortedBooks;
+    }
 
     @action
     updateTitle(e) {
         this.title = e.target.value;
+    }
+
+    @action
+    updateSearchTerm(e) {
+        this.searchTerm = e.target.value;
     }
 
     @action

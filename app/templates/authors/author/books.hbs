@@ -1,9 +1,47 @@
 {{page-title @model.name "'s books | B00kL1st3r" replace=true}}
 
-{{#if @model.books.length}}
+
+<div class="mb-8 flex">
+    {{#if this.sortedBooks.length}}
+    <span class="relative z-0 inline-flex shadow-sm">
+        <LinkTo
+            class="rounded-1-md inline-flex items-center px-4 py-2 border border-gray-300 bg-purple-200 leading-5 font-medium text-gray-600 hover:text-white hover:bg-purple-800"
+            data-test-rr="sort-by-title-asc" @query={{hash s="title" }}>
+            Title
+            <FaIcon class='ml-2' @icon="angle-up" @prefix="fas" />
+        </LinkTo>
+        <LinkTo
+            class="rounded-1-md inline-flex items-center px-4 py-2 border border-gray-300 bg-purple-200 leading-5 font-medium text-gray-600 hover:text-white hover:bg-purple-800"
+            data-test-rr="sort-by-title-desc" @query={{hash s="-title" }}>
+            Title
+            <FaIcon class='ml-2' @icon="angle-down" @prefix="fas" />
+        </LinkTo>
+        <LinkTo
+            class="rounded-1-md inline-flex items-center px-4 py-2 border border-gray-300 bg-purple-200 leading-5 font-medium text-gray-600 hover:text-white hover:bg-purple-800"
+            data-test-rr="sort-by-rating-asc" @query={{hash s="rating" }}>
+            Rating
+            <FaIcon class='ml-2' @icon="angle-up" @prefix="fas" />
+        </LinkTo>
+        <LinkTo
+            class="rounded-1-md inline-flex items-center px-4 py-2 border border-gray-300 bg-purple-200 leading-5 font-medium text-gray-600 hover:text-white hover:bg-purple-800"
+            data-test-rr="sort-by-rating-desc" @query={{hash s="-rating" }}>
+            Rating
+            <FaIcon class='ml-2' @icon="angle-down" @prefix="fas" />
+        </LinkTo>
+    </span>
+    {{/if}}
+    <div class="relative ml-auto rounded-md shadow-sm">
+        <input type="text" class="border rounded-md py-2 px-3 block w-full pr-10 text-gray-800 sm:text-sm sm:leading-5"
+            data-test-rr="search-box" {{on "input" this.updateSearchTerm}} />
+        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <FaIcon class="h-5 w-5 text-gray-400" @icon="search" @prefix="fas" />
+        </div>
+    </div>
+</div>
+{{#if this.sortedBooks.length}}
 <ul>
-    {{#each @model.books as |book|}}
-    <li class="mb-2">
+    {{#each this.sortedBooks as |book|}}
+    <li class="mb-2" data-test-rr="book-list-item">
         {{book.title}}
         <span class="float-right">
             <StarRating @rating={{book.rating}} @onUpdate={{fn this.updateRating book}} />

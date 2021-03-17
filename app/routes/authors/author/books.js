@@ -4,6 +4,15 @@ import { inject as service } from '@ember/service';
 export default class AuthorsAuthorBooksRoute extends Route {
     @service library;
 
+    queryParams = {
+        sortBy: {
+            as: 's',
+        },
+        searchTerm: {
+            as: 'q',
+        }
+    };
+
     async model() {
         let author = this.modelFor('authors.author');
         await this.library.fetchRelated(author, 'books');
