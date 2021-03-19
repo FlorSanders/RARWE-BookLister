@@ -2,11 +2,12 @@ import { module, test } from 'qunit';
 import { visit, currentURL, click, fillIn } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { setupMirage } from 'ember-cli-mirage/test-support';
+import {capitalize} from 'rarwe/helpers/capitalize';
 
 function testSortedTitles(titles, sortingFn, assert) {
   let sortedTitles = titles.sort(sortingFn);
   sortedTitles.forEach((title, index) => {
-    assert.dom(`[data-test-rr="book-list-item"]:nth-child(${index+1})`).hasText(title, `Book ${index} has the right title`);
+    assert.dom(`[data-test-rr="book-list-item"]:nth-child(${index+1})`).hasText(capitalize(title), `Book ${index} has the right title`);
   });
 }
 
@@ -14,7 +15,7 @@ module('Acceptance | books', function(hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test('Sort songs in various ways', async function(assert) {
+  test('Sort books in various ways', async function(assert) {
     // Define an author and some books
     let name1 = 'Cal Newport';
     let ratings = [3,5,2];
@@ -72,7 +73,7 @@ module('Acceptance | books', function(hooks) {
     await click('[data-test-rr=sort-by-title-asc');
     let sortedFilteredTitles = filteredTitles.sort((a,b) => (a > b ? 1 : -1));
     sortedFilteredTitles.forEach((title, index) => {
-      assert.dom(`[data-test-rr=book-list-item]:nth-child(${index+1})`).hasText(title, `Book ${index} has the right title after filtering and sorting`);
+      assert.dom(`[data-test-rr=book-list-item]:nth-child(${index+1})`).hasText(capitalize(title), `Book ${index} has the right title after filtering and sorting`);
     });
     // Test whether the searchTerm qp actually turns up in the address
     assert.ok(currentURL().includes(`q=${filterElem}`), 'The searchTerm query parameter appears with the correct value');
