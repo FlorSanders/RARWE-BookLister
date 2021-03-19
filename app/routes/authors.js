@@ -4,7 +4,6 @@ import { inject as service } from '@ember/service';
 
 export default class AuthorsRoute extends Route {
   @service library;
-
   async model() {
     return this.library.fetchAll('authors');
   }

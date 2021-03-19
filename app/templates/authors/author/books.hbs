@@ -42,7 +42,7 @@
 <ul>
     {{#each this.sortedBooks as |book|}}
     <li class="mb-2" data-test-rr="book-list-item">
-        {{book.title}}
+        {{capitalize book.title}}
         <span class="float-right">
             <StarRating @rating={{book.rating}} @onUpdate={{fn this.updateRating book}} />
         </span>
@@ -65,8 +65,8 @@
 </div>
 {{else}}
 <div class="mt-6 flex">
-    <input type="text" class="text-gray-800 bg-white rounded-md py-2 px-4" placeholder="Title" value={{this.title}}
-        {{on "input" this.updateTitle}} />
+    <input type="text" class="text-gray-800 bg-white rounded-md py-2 px-4" placeholder={{this.newBookPlaceholder}}
+        value={{this.title}} {{on "input" this.updateTitle}} />
     <button type="button"
         class="ml-4 px-4 py-2 rounded bg-green-200 shadow-md hover:shadow-lg hover:text-white hover:bg-green-800"
         {{on "click" this.saveBook}}>

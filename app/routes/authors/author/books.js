@@ -17,6 +17,8 @@ export default class AuthorsAuthorBooksRoute extends Route {
         let author = this.modelFor('authors.author');
         await this.library.fetchRelated(author, 'books');
         return author;
+        // Returning a rejected promise can be used to check whether the errors are displayed correctly
+        // return Promise.reject()
     }
 
     // Take care of the singleton behaviour: reset the controller when we switch pages

@@ -4,7 +4,7 @@
         <LinkTo @route="authors.author" @model={{item.author.id}} class={{if
             item.isActive "border-l-4 pl-2 border-purple-200 hover:border-purple-800" }}
             data-test-rr="author-list-link">
-            {{item.author.name}}
+            {{capitalize item.author.name}}
         </LinkTo>
     </li>
     {{/each}}
